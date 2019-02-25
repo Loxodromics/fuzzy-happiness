@@ -18,14 +18,11 @@ public:
 
 private slots:
     void initTestCase();
-    void cleanupTestCase();
     void test_case1();
 };
 
 GUItest::GUItest()
-{
-    qRegisterMetaType<Qt3DRender::QMesh::Status>();
-}
+{}
 
 GUItest::~GUItest()
 {}
@@ -34,9 +31,6 @@ void GUItest::initTestCase()
 {
     QTEST_SET_MAIN_SOURCE_PATH;
 }
-
-void GUItest::cleanupTestCase()
-{}
 
 void GUItest::test_case1()
 {

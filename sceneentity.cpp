@@ -35,12 +35,12 @@ void SceneEntity::meshStatusChanged(Qt3DRender::QMesh::Status status)
     if (status == QMesh::Ready)
     {
         qDebug() << "Mesh loaded";
+        emit meshLoaded(status == QMesh::Ready);
     }
 
     if (status == QMesh::Error)
     {
         qDebug() << "Mesh load error";
+        emit meshLoaded(status == QMesh::Ready);
     }
-
-    emit meshLoaded(status == QMesh::Ready);
 }
