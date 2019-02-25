@@ -1,17 +1,9 @@
-/*
 
-. . . . . . . .
-. o o . . o o .
-. o o . . o o .     HOLOPLOT
-. o o o o o o .     www.holoplot.com
-. o o o o o o .
-. o o . . o o .     Copyright (c) Holoplot GmbH
-. o o . . o o .     All rights reserved
-. . . . . . . .
+#include "sceneentity.h"
 
-*/
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
 
 int main(int argc, char *argv[])
 {
@@ -20,6 +12,12 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
+
+    Qt3DCore::QNode node;
+    auto sceneEntity = new SceneEntity(&node);
+    sceneEntity->loadMesh();
+    engine.rootContext()->setContextProperty(QStringLiteral("sceneEntity"), sceneEntity);
+
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;
