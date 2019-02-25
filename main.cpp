@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 
     Qt3DCore::QNode node;
     auto sceneEntity = new SceneEntity(&node);
-    sceneEntity->loadMesh();
+    sceneEntity->loadMesh(QStringLiteral("qrc:/quad.obj"));
     engine.rootContext()->setContextProperty(QStringLiteral("sceneEntity"), sceneEntity);
 
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));

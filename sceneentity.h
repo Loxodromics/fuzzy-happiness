@@ -10,12 +10,15 @@ class SceneEntity : public Qt3DCore::QEntity
 public:
     explicit SceneEntity(Qt3DCore::QNode *parent = nullptr);
 
-    void loadMesh();
+    void loadMesh(QString fileNameString);
 
     Qt3DRender::QMesh *m_mesh = nullptr;
 
 public slots:
     void meshStatusChanged(Qt3DRender::QMesh::Status status);
+
+signals:
+    void meshLoaded(bool success);
 };
 
 #endif    // SCENEENTITY_H

@@ -13,13 +13,13 @@ SceneEntity::SceneEntity(Qt3DCore::QNode *parent): Qt3DCore::QEntity(parent)
     this->addComponent(material);
 }
 
-void SceneEntity::loadMesh()
+void SceneEntity::loadMesh(QString fileNameString)
 {
     auto connection =
       QObject::connect(m_mesh, &Qt3DRender::QMesh::statusChanged, this, &SceneEntity::meshStatusChanged);
     assert(static_cast<bool>(connection));
 
-    const QUrl fileUrl("qrc:/quad.obj");
+    const QUrl fileUrl(fileNameString);
     m_mesh->setSource(fileUrl);
 }
 
@@ -41,4 +41,6 @@ void SceneEntity::meshStatusChanged(Qt3DRender::QMesh::Status status)
     {
         qDebug() << "Mesh load error";
     }
+
+    emit meshLoaded(status == QMesh::Ready);
 }
